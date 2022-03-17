@@ -11,9 +11,20 @@ function Form() {
   function handleLastNameChange(event) {
     setLastName(event.target.value);
   }
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = {
+      firstName: firstName,
+      lastName: lastName,
+    };
+    props.sendFormDataSomewhere(formData);
+    setFirstName("");
+    setLastName("");
+  }
+  
 
   return (
-    <form>
+    <form onClick={handleSubmit}>
       <input type="text" onChange={handleFirstNameChange} value={firstName} />
       <input type="text" onChange={handleLastNameChange} value={lastName} />
       <button type="submit">Submit</button>
